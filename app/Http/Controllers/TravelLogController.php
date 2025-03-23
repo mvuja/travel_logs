@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Validation
 use Illuminate\Validation\ValidationException;
 use Exception;
 
@@ -23,10 +24,10 @@ class TravelLogController extends Controller
                 'type' => $data->type,
                 'departure_date' => date('Y-m-d H:i:s', strtotime($data->departureDate)),
                 'arrival_date' => date('Y-m-d H:i:s', strtotime($data->arrivalDate)),
-                'departure_place' => $data->departurePlace ?? null,
-                'arrival_place' => $data->arrivalPlace ?? null,
-                'accommodation_place' => $data->accommodationPlace ?? null,
-                'comment' => $data->comment ?? null,
+                'departure_place' => $data->departurePlace,
+                'arrival_place' => $data->arrivalPlace,
+                'accommodation_place' => $data->accommodationPlace,
+                'comment' => $data->comment,
             ]);
 
             // Convert to DTO
