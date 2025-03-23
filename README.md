@@ -186,7 +186,3 @@ Ensure you have the following installed:
 
 -   Ensure that `php artisan queue:work` is running for bulk uploads to be processed.
 -   Modify `database/database.sqlite` path in `.env` if needed.
-
-## Author
-
-Marko
