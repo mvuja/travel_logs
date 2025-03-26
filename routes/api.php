@@ -5,6 +5,7 @@ use App\Http\Controllers\TravelLogController;
 use App\Http\Controllers\BulkUploadController;
 
 Route::post('/travel-logs', [TravelLogController::class, 'store']);
+Route::get('/travel-logs', [TravelLogController::class, 'showAll']);
 Route::get('/travel-logs/{travelLog}', [TravelLogController::class, 'show']);
 Route::delete('/travel-logs/{travelLog}', [TravelLogController::class, 'destroy']);
 

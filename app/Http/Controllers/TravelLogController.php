@@ -53,6 +53,23 @@ class TravelLogController extends Controller
     }
 
 
+    public function showAll(): JsonResponse
+    {
+        $travelLogs = TravelLog::all();
+
+        // Convert to DTO
+        $travelLogsDto = $travelLogs->map(fn($log) => [
+            ...TravelLogData::from($log)->toArray(),
+            'id' => $log->id,
+        ]);
+    
+        return response()->json([
+            'message' => 'Travel logs retrieved successfully!',
+            'data' => $travelLogsDto,
+        ]);
+    }
+
+
     public function show($id): JsonResponse
     {
         $travelLog = TravelLog::find($id);
