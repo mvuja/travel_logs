@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useParams, useNavigate, useLocation } from "react-router";
+
 import { useTravelLogs } from "@/context/TravelLogsContext";
+
 import {
     Card,
     CardContent,
@@ -12,28 +14,23 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
+
 import { formatDate } from "@/lib/utils";
 import { capitalLetter } from "@/lib/utils";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 const Modal = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+
     const { removeLog } = useTravelLogs();
+
     const isModal = !!location.state?.background;
 
     const [log, setLog] = useState(null);
     const [error, setError] = useState("");
-    const [closing, setClosing] = useState(false);
-
-    // Handle closing of the modal with animation
-    const handleClose = () => {
-        setClosing(true); // Trigger exit animation
-        setTimeout(() => {
-            navigate("/"); // Navigate after animation completes
-        }, 300); // Wait for the duration of the animation (300ms)
-    };
 
     useEffect(() => {
         const controller = new AbortController();
@@ -88,17 +85,15 @@ const Modal = () => {
                 }`}
             >
                 <motion.div
-                    key="modal"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="bg-white p-6 rounded-lg shadow-lg"
                 >
                     {log ? (
                         <Card>
                             <CardHeader>
-                                <CardTitle>
+                                <CardTitle className="text-yellow">
                                     {capitalLetter(log?.type)}
                                 </CardTitle>
                                 <CardDescription>
@@ -106,19 +101,36 @@ const Modal = () => {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <p>Departure place: {log?.departurePlace}</p>
-                                <p>Arrival place: {log?.arrivalPlace}</p>
+                                <p>
+                                    <span className="font-bold">
+                                        Departure place:
+                                    </span>{" "}
+                                    {log?.departurePlace || "--"}
+                                </p>
+                                <p>
+                                    <span className="font-bold">
+                                        Arrival place:
+                                    </span>{" "}
+                                    {log?.arrivalPlace || "--"}
+                                </p>
                             </CardContent>
                             <CardFooter className="block">
                                 <p>
-                                    Departure date:{" "}
+                                    <span className="font-bold">
+                                        Departure date:
+                                    </span>{" "}
                                     {formatDate(log?.departureDate)}
                                 </p>
                                 <p>
-                                    Arrival date: {formatDate(log?.arrivalDate)}
+                                    <span className="font-bold">
+                                        Arrival date:
+                                    </span>{" "}
+                                    {formatDate(log?.arrivalDate)}
                                 </p>
                                 <div className="btns mt-4 flex justify-end gap-2">
-                                    <Button onClick={handleClose}>Close</Button>
+                                    <Button onClick={() => navigate("/")}>
+                                        Close
+                                    </Button>
                                     <Button
                                         variant="destructive"
                                         onClick={handleDelete}
@@ -146,7 +158,9 @@ const Modal = () => {
                                 <Skeleton className="h-4 w-[250px] mb-3" />
                                 <Skeleton className="h-4 w-[230px]" />
                                 <div className="btns mt-4 flex justify-end gap-2">
-                                    <Button onClick={handleClose}>Close</Button>
+                                    <Button onClick={() => navigate("/")}>
+                                        Close
+                                    </Button>
                                     <Button
                                         variant="destructive"
                                         onClick={handleDelete}

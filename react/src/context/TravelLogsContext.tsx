@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 // Define the context type
 type TravelLogsContextType = {
     logs: any[];
+    loading: boolean;
     removeLog: (id: string) => void;
 };
 
@@ -13,7 +14,7 @@ const TravelLogsContext = createContext<TravelLogsContextType | undefined>(
 
 // Context Provider
 export const TravelLogsProvider = ({ children }) => {
-    const [logs, setLogs] = useState([]);
+    const [logs, setLogs] = useState(null);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -50,7 +51,7 @@ export const TravelLogsProvider = ({ children }) => {
     };
 
     return (
-        <TravelLogsContext.Provider value={{ logs, removeLog }}>
+        <TravelLogsContext.Provider value={{ logs, loading, removeLog }}>
             {children}
         </TravelLogsContext.Provider>
     );

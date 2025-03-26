@@ -3,11 +3,32 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+
+/* CUSTOM */
 @theme {
   --color-blue: #272e40;
   --color-yellow: #ffd308;
+  --color-drk-blue: #0F172B;
   --color-yellow-hover: #dab40b;
 }
+
+body {
+  @apply bg-blue
+}
+
+.nav-item {
+  @apply font-semibold text-lg text-yellow
+}
+
+nav>div {
+  @apply w-full
+}
+
+h1 {
+  @apply text-gray-200 font-bold text-3xl mb-7
+}
+
+/* CUSTOM */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -16,7 +37,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

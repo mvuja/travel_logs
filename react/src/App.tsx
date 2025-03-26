@@ -20,21 +20,21 @@ function App() {
     return (
         <TravelLogsProvider>
             <main className="bg-blue">
-                <div className="container mx-auto px-4">
-                    <NavigationMenu>
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                                <NavLink to="/" end>
-                                    Travel Logs
-                                </NavLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavLink to="/create" end>
-                                    Create
-                                </NavLink>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
+                <NavigationMenu className="fixed bg-blue w-full max-w-full justify-center py-4 shadow-xl">
+                    <NavigationMenuList className="gap-5 container mx-auto px-4 w-full items-start justify-start">
+                        <NavigationMenuItem className="nav-item">
+                            <NavLink to="/" end>
+                                Travel Logs
+                            </NavLink>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem className="nav-item">
+                            <NavLink to="/create" end>
+                                Create
+                            </NavLink>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
+                <div className="container mx-auto px-4 pt-25 pb-15">
                     <Routes location={background || location}>
                         <Route index element={<Home />} />
                         <Route path="create" element={<Create />} />
