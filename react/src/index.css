@@ -6,6 +6,7 @@
 @theme {
   --color-blue: #272e40;
   --color-yellow: #ffd308;
+  --color-yellow-hover: #dab40b;
 }
 
 :root {

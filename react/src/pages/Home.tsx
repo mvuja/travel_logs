@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useTravelLogs } from "@/context/TravelLogsContext";
 
 import {
     Card,
@@ -10,74 +10,52 @@ import {
 } from "@/components/ui/card";
 
 import { formatDate } from "@/lib/utils";
+import { capitalLetter } from "@/lib/utils";
 
 import { Link, useLocation } from "react-router";
 
 const Home = () => {
-    const [data, setData] = useState([]);
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(true);
-
     const location = useLocation();
 
-    useEffect(() => {
-        const controller = new AbortController();
-        const fetchData = async () => {
-            const url = "http://127.0.0.1:8000/api/travel-logs";
-            try {
-                const response = await fetch(url, {
-                    signal: controller.signal,
-                });
-                if (!response.ok)
-                    throw new Error("Network response was not ok");
-                const result = await response.json();
-
-                const holder = result.data;
-                setData(holder.reverse());
-            } catch (err) {
-                if ((err as Error).name !== "AbortError")
-                    setError((err as Error).message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-
-        return () => controller.abort();
-    }, []);
+    const { logs } = useTravelLogs();
 
     return (
         <div>
-            <h1>Posts</h1>
+            <h1>All of Your Travel Logs</h1>
             <ul className="grid grid-cols-4 gap-4">
-                {data.map((post) => (
-                    <li key={post.id}>
+                {logs.map((log) => (
+                    <li key={log.id}>
                         <Link
-                            to={`/travel-log/${post.id}`}
+                            to={`/travel-log/${log.id}`}
                             state={{ background: location }}
                         >
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>{post.type}</CardTitle>
+                                    <CardTitle>
+                                        {capitalLetter(log.type)}
+                                    </CardTitle>
                                     <CardDescription>
-                                        {post.comment}
+                                        {log.comment || "No comment"}
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
                                     <p>
-                                        Departure place: {post.departurePlace}
+                                        Departure place:{" "}
+                                        {log.departurePlace || "--"}
                                     </p>
-                                    <p>Arrival place: {post.arrivalPlace}</p>
+                                    <p>
+                                        Arrival place:{" "}
+                                        {log.arrivalPlace || "--"}
+                                    </p>
                                 </CardContent>
                                 <CardFooter className="block">
                                     <p>
                                         Departure date:{" "}
-                                        {formatDate(post.departureDate)}
+                                        {formatDate(log.departureDate)}
                                     </p>
                                     <p>
                                         Arrival date:{" "}
-                                        {formatDate(post.arrivalDate)}
+                                        {formatDate(log.arrivalDate)}
                                     </p>
                                 </CardFooter>
                             </Card>
