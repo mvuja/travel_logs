@@ -28,6 +28,10 @@ h1 {
   @apply text-gray-200 font-bold text-3xl mb-7
 }
 
+input, textarea {
+  @apply bg-drk-blue
+}
+
 /* CUSTOM */
 
 :root {

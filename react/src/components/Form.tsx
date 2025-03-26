@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
-import { toast } from "sonner";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -25,6 +26,8 @@ import { SmartDatetimeInput } from "@/components/ui/smart-datetime-input";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+import { useNavigate } from "react-router";
+
 const formSchema = z.object({
     type: z.string(),
     departureDate: z.unknown(),
@@ -36,6 +39,8 @@ const formSchema = z.object({
 });
 
 export default function MyForm() {
+    const navigate = useNavigate();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -54,7 +59,11 @@ export default function MyForm() {
                 },
                 body: JSON.stringify(values, null, 2),
             });
+            if (!response.ok) {
+                throw new Error("Failed to add travel log");
+            }
             console.log(response.status);
+            navigate("/");
         } catch (error) {
             console.error("Form submission error", error);
             toast.error("Failed to submit the form. Please try again.");
@@ -72,12 +81,12 @@ export default function MyForm() {
                     name="type"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>Type of your travel</FormLabel>
                             <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                             >
-                                <FormControl>
+                                <FormControl className="bg-drk-blue! w-full cursor-pointer">
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a type of your travel" />
                                     </SelectTrigger>

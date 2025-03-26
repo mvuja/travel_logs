@@ -156,7 +156,7 @@ export const SmartDatetimeInput = React.forwardRef<
             <div className="flex items-center justify-center">
                 <div
                     className={cn(
-                        "flex gap-1 w-full p-1 items-center justify-between rounded-md border transition-all",
+                        "flex gap-1 w-full p-1 items-center justify-between rounded-md border transition-all bg-drk-blue",
                         "focus-within:outline-0 focus:outline-0 focus:ring-0",
                         "placeholder:text-muted-foreground focus-visible:outline-0 ",
                         className

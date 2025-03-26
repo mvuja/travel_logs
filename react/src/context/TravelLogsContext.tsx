@@ -2,9 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 // Define the context type
 type TravelLogsContextType = {
-    logs: any[];
+    logs: any;
     loading: boolean;
     removeLog: (id: string) => void;
+    refetchLogs: () => void;
 };
 
 // Create context
@@ -50,8 +51,25 @@ export const TravelLogsProvider = ({ children }) => {
         setLogs((prevLogs) => prevLogs.filter((log) => log.id !== id));
     };
 
+    const refetchLogs = async () => {
+        setLoading(true);
+        const url = "http://127.0.0.1:8000/api/travel-logs";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Failed to fetch logs");
+            const result = await response.json();
+            setLogs(result.data.reverse());
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <TravelLogsContext.Provider value={{ logs, loading, removeLog }}>
+        <TravelLogsContext.Provider
+            value={{ logs, loading, removeLog, refetchLogs }}
+        >
             {children}
         </TravelLogsContext.Provider>
     );

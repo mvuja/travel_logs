@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const Home = () => {
     const location = useLocation();
 
-    const { logs, loading } = useTravelLogs();
+    const { logs, loading, refetchLogs } = useTravelLogs();
 
     const isLoading = loading || !logs;
 
