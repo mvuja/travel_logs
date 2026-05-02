@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-// Validation
 use Illuminate\Validation\ValidationException;
 use Exception;
 
@@ -14,78 +12,90 @@ use Illuminate\Http\JsonResponse;
 
 class TravelLogController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
-        try {
-            // Validate data using DTO
-            $data = TravelLogData::validateAndCreate($request->all());
-    
-            $travelLog = TravelLog::create([
-                'type' => $data->type,
-                'departure_date' => date('Y-m-d H:i:s', strtotime($data->departureDate)),
-                'arrival_date' => date('Y-m-d H:i:s', strtotime($data->arrivalDate)),
-                'departure_place' => $data->departurePlace,
-                'arrival_place' => $data->arrivalPlace,
-                'accommodation_place' => $data->accommodationPlace,
-                'comment' => $data->comment,
-            ]);
-
-            // Convert to DTO
-            $travelLogDto = TravelLogData::from($travelLog);
-    
-            return response()->json([
-                'message' => 'Travel log created successfully!',
-                'data' => $travelLogDto,
-            ], 201);
-    
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors(),
-            ], 422);
-    
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Something went wrong',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    }
-
-
-    public function show($id): JsonResponse
-    {
-        $travelLog = TravelLog::find($id);
-
-        if (!$travelLog) {
-            return response()->json([
-                'message' => 'Travel log not found.',
-            ], 404);
-        }
-
-        // Convert to DTO
-        $travelLogDto = TravelLogData::from($travelLog);
+        $travelLogs = TravelLog::latest()->get();
 
         return response()->json([
-            'message' => 'Travel log retrieved successfully!',
-            'data' => $travelLogDto,
+            'message' => 'Travel logs retrieved successfully!',
+            'data'    => TravelLogData::collect($travelLogs),
         ]);
     }
 
-
-    public function destroy($id): JsonResponse
+    public function store(Request $request): JsonResponse
     {
-        $travelLog = TravelLog::find($id);
+        try {
+            $data = TravelLogData::validateAndCreate($request->all());
 
-        if (!$travelLog) {
+            $travelLog = TravelLog::create($this->buildAttributes($data));
+
             return response()->json([
-                'message' => 'Travel log not found.',
-            ], 404);
+                'message' => 'Travel log created successfully!',
+                'data'    => TravelLogData::from($travelLog),
+            ], 201);
+
+        } catch (ValidationException $e) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage()], 500);
         }
-    
+    }
+
+    public function show(TravelLog $travelLog): JsonResponse
+    {
+        return response()->json([
+            'message' => 'Travel log retrieved successfully!',
+            'data'    => TravelLogData::from($travelLog),
+        ]);
+    }
+
+    public function update(Request $request, TravelLog $travelLog): JsonResponse
+    {
+        try {
+            $data = TravelLogData::validateAndCreate($request->all());
+
+            $travelLog->update($this->buildAttributes($data));
+
+            return response()->json([
+                'message' => 'Travel log updated successfully!',
+                'data'    => TravelLogData::from($travelLog->fresh()),
+            ]);
+
+        } catch (ValidationException $e) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function destroy(TravelLog $travelLog): JsonResponse
+    {
         $travelLog->delete();
-    
-        // Return a 204 No Content response
         return response()->json(null, 204);
+    }
+
+    private function buildAttributes(TravelLogData $data): array
+    {
+        return [
+            'type'                => $data->type,
+            'departure_date'      => date('Y-m-d H:i:s', strtotime($data->departureDate)),
+            'arrival_date'        => date('Y-m-d H:i:s', strtotime($data->arrivalDate)),
+            'departure_place'     => $data->departurePlace,
+            'arrival_place'       => $data->arrivalPlace,
+            'accommodation_place' => $data->accommodationPlace,
+            'comment'             => $data->comment,
+            // Geocoded destination
+            'place_name'          => $data->placeName,
+            'city'                => $data->city,
+            'country'             => $data->country,
+            'latitude'            => $data->latitude,
+            'longitude'           => $data->longitude,
+            // Geocoded departure
+            'from_place_name'     => $data->fromPlaceName,
+            'from_city'           => $data->fromCity,
+            'from_country'        => $data->fromCountry,
+            'from_lat'            => $data->fromLat,
+            'from_lng'            => $data->fromLng,
+        ];
     }
 }

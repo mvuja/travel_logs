@@ -21,10 +21,26 @@ class TravelLog extends Model
         'arrival_place',
         'accommodation_place',
         'comment',
+        'latitude',
+        'longitude',
+        // Geocoded destination
+        'place_name',
+        'city',
+        'country',
+        // Geocoded departure (flights/rail/car)
+        'from_place_name',
+        'from_city',
+        'from_country',
+        'from_lat',
+        'from_lng',
     ];
 
     protected $casts = [
         'departure_date' => 'datetime',
-        'arrival_date' => 'datetime',
+        'arrival_date'   => 'datetime',
+        'latitude'       => 'float',
+        'longitude'      => 'float',
+        'from_lat'       => 'float',
+        'from_lng'       => 'float',
     ];
 }

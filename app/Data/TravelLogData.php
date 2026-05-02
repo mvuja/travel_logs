@@ -3,14 +3,16 @@
 namespace App\Data;
 
 use Spatie\LaravelData\Data;
-
 use Spatie\LaravelData\Attributes\Validation\In;
-use Spatie\LaravelData\Attributes\Validation\RequiredIf;
 use Spatie\LaravelData\Attributes\Validation\Date;
+use Spatie\LaravelData\Attributes\WithoutValidation;
 
 class TravelLogData extends Data
 {
     public function __construct(
+        #[WithoutValidation]
+        public ?string $id,
+
         #[In(['flight', 'rail', 'car', 'hotel'])]
         public string $type,
 
@@ -20,15 +22,30 @@ class TravelLogData extends Data
         #[Date]
         public string $arrivalDate,
 
-        #[RequiredIf('type', 'car', 'rail')]
+        // Legacy text fields (kept for backward compat)
         public ?string $departurePlace,
-
-        #[RequiredIf('type', 'car', 'rail')]
         public ?string $arrivalPlace,
-
-        #[RequiredIf('type', 'hotel')]
         public ?string $accommodationPlace,
 
-        public ?string $comment
+        public ?string $comment,
+
+        // Geocoded destination / primary location
+        public ?string $placeName,
+        public ?string $city,
+        public ?string $country,
+        public ?float  $latitude,
+        public ?float  $longitude,
+
+        // Geocoded departure (flights / rail / car)
+        public ?string $fromPlaceName,
+        public ?string $fromCity,
+        public ?string $fromCountry,
+        public ?float  $fromLat,
+        public ?float  $fromLng,
     ) {}
+
+    public static function rules(): array
+    {
+        return [];
+    }
 }

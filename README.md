@@ -1,188 +1,208 @@
 # Travel Logs
 
-## Overview
+A full-stack travel log manager built with **Laravel 12** (API) and **React + TypeScript** (frontend).
 
-This is a Laravel-based API that allows users to manage travel logs, including bulk CSV uploads. It supports:
+---
 
--   Creating, retrieving, and deleting travel logs.
--   Bulk uploading travel logs via CSV.
--   Check the upload progress.
--   Asynchronous processing using Laravel Queues.
--   Data validation using `spatie/laravel-data`.
+## Features
+
+- **Create, edit, delete** travel logs — flights, rail, car, hotel
+- **Geocoded location search** — type a city name, pick from OpenStreetMap autocomplete; city, country and coordinates are stored automatically (no manual input)
+- **Bulk CSV upload** — import many logs at once with a live progress bar (background queue job)
+- **Activity Breakdown** — donut pie chart showing your log distribution by type
+- **Country Heatmap** — world choropleth map coloured by how many times you've visited each country (updates live when logs are added/edited/deleted)
+
+---
+
+## Project Structure
+
+```
+travel_logs/        ← Laravel API (backend)
+travel_logs/react/  ← React app (frontend)
+```
+
+---
 
 ## Prerequisites
 
-Ensure you have the following installed:
+| Tool | Why |
+|---|---|
+| **PHP 8.2+** | Runs Laravel |
+| **Composer** | Installs PHP dependencies |
+| **Node.js 18+** | Runs the React/Vite dev server |
+| **npm** | Installs JS dependencies |
+| **SQLite** | Default database — single file, no server needed |
 
--   PHP 8.1+
--   Composer
--   SQLite (or modify for another database)
--   Laravel 10+
+---
 
-## Installation
+## Setup
 
-1. **Clone the repository:**
+### 1 — Clone
 
-    ```bash
-    git clone https://github.com/mvuja/travel_logs
-    cd travel_logs
-    ```
-
-2. **Install dependencies:**
-
-    ```bash
-    composer install
-    ```
-
-3. **Set up the environment:**
-
-    ```bash
-    cp .env.example .env
-    ```
-
-    - Configure database settings in `.env` (using SQLite by default):
-        ```env
-        DB_CONNECTION=sqlite
-        DB_DATABASE=/absolute/path/to/database.sqlite
-        ```
-        Ensure the `database.sqlite` file exists in `database` folder:
-        ```bash
-        touch database/database.sqlite
-        ```
-
-4. **Run migrations:**
-
-    ```bash
-    php artisan migrate
-    ```
-
-5. **Seed the database (optional):**
-
-    ```bash
-    php artisan db:seed
-    ```
-
-6. **Run the queue worker:**
-
-    ```bash
-    php artisan queue:work --tries=3
-    ```
-
-7. **Start the development server:**
-    ```bash
-    php artisan serve
-    ```
-
-## API Endpoints
-
-### 1. Create a Single Travel Log
-
-**POST** `/api/travel-logs`
-
-#### Request Body (JSON)
-
-```json
-{
-    "type": "car",
-    "departureDate": "2025-03-17T08:00:00Z",
-    "arrivalDate": "2025-03-17T12:00:00Z",
-    "departurePlace": "Berlin",
-    "arrivalPlace": "Munich",
-    "comment": "Business trip"
-}
+```bash
+git clone https://github.com/mvuja/travel_logs
+cd travel_logs
 ```
 
-#### Response
+### 2 — Install PHP dependencies
 
-```json
-{
-    "message": "Travel log created successfully!",
-    "data": {
-        "type": "car",
-        "departureDate": "2025-03-17 08:00:00",
-        "arrivalDate": "2025-03-17 12:00:00",
-        "departurePlace": "Berlin",
-        "arrivalPlace": "Munich",
-        "accommodationPlace": null,
-        "comment": "Business trip"
-    }
-}
+```bash
+composer install
 ```
 
-### 2. Retrieve a Travel Log
+### 3 — Environment file
 
-**GET** `/api/travel-logs/{travelLog}`
-
-#### Response
-
-```json
-{
-    "message": "Travel log retrieved successfully!",
-    "data": {
-        "type": "car",
-        "departureDate": "2025-03-17 08:00:00",
-        "arrivalDate": "2025-03-17 12:00:00",
-        "departurePlace": "Berlin",
-        "arrivalPlace": "Munich",
-        "accommodationPlace": null,
-        "comment": "Business trip"
-    }
-}
+```bash
+cp .env.example .env
 ```
 
-### 3. Delete a Travel Log
+The defaults work out of the box for a local SQLite setup — nothing to change.
 
-**DELETE** `/api/travel-logs/{travelLog}`
+### 4 — App key
 
-#### Response: 204 No Content
-
-### 4. Bulk Upload Travel Logs (CSV)
-
-**POST** `/api/travel-logs/bulk-upload`
-
-#### Request
-
--   Send a CSV file with headers: `type,departureDate,arrivalDate,departurePlace,arrivalPlace,accommodationPlace,comment`
--   Example CSV content:
-    ```csv
-        type,departureDate,arrivalDate,departurePlace,arrivalPlace,accommodationPlace,comment
-        car,2025-01-30T10:56:53Z,2025-01-30T11:56:53Z,Berlin,Berlin,,No comment
-        rail,2025-02-24T10:56:53Z,2025-02-24T20:56:53Z,Berlin,Paris,,Conference
-        hotel,2025-01-16T10:56:53Z,2025-01-16T18:56:53Z,,,Marriott,Conference
-        rail,2025-02-26T10:56:53Z,2025-02-26T11:56:53Z,Tokyo,Tokyo,,Business trip
-        flight,2024-12-29T10:56:53Z,2024-12-29T15:56:53Z,,,,Business trip
-    ```
-
-#### Response
-
-```json
-{
-    "queueTaskId": 1
-}
+```bash
+php artisan key:generate
 ```
 
-### 5. Check Bulk Upload Status
+Laravel needs this to encrypt cookies and sessions.
 
-**GET** `/api/queue-tasks/{queueTask}`
+### 5 — Create the SQLite file
 
-#### Response
-
-```json
-{
-    "id": 2,
-    "status": "success",
-    "progress": 100
-}
+```bash
+touch database/database.sqlite
 ```
 
-## Technologies Used
+SQLite stores everything in this single file. It must exist before running migrations.
 
--   Laravel 10+
--   SQLite (configurable for other databases)
--   Spatie Laravel Data for DTO and validation
--   Laravel Queues for background jobs
+### 6 — Run migrations
 
-## Notes
+```bash
+php artisan migrate
+```
 
--   Ensure that `php artisan queue:work` is running for bulk uploads to be processed.
--   Modify `database/database.sqlite` path in `.env` if needed.
+### 7 — Install frontend dependencies
+
+```bash
+cd react
+npm install
+```
+
+---
+
+## Running the App
+
+You need **three terminals** open from the project root.
+
+### Terminal 1 — Laravel API
+
+```bash
+php artisan serve
+```
+
+Starts the API at **http://localhost:8000**.
+
+### Terminal 2 — Queue worker (required for bulk upload)
+
+```bash
+php artisan queue:listen --tries=1
+```
+
+Processes background jobs. Without this, bulk CSV uploads will stay stuck at `queued`.
+
+### Terminal 3 — React frontend
+
+```bash
+cd react
+npm run dev
+```
+
+Starts the Vite dev server at **http://localhost:5173**. API calls are automatically proxied to port 8000 — no CORS config needed.
+
+---
+
+## Opening the App
+
+Go to **http://localhost:5173**
+
+You'll see:
+- **Your Logs** — full list with edit/delete actions
+- **Insights** — Activity pie chart + Country heatmap side by side
+- **New Log** / **Bulk Upload** buttons in the header
+
+When creating a log, type a city in the location search boxes and **select a result from the dropdown** — this ensures the country is correctly geocoded and will appear on the heatmap.
+
+---
+
+## API Reference
+
+Base URL: `http://localhost:8000/api`
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/travel-logs` | List all logs |
+| `POST` | `/travel-logs` | Create a log |
+| `GET` | `/travel-logs/{id}` | Get a single log |
+| `PUT` | `/travel-logs/{id}` | Update a log |
+| `DELETE` | `/travel-logs/{id}` | Delete a log |
+| `POST` | `/travel-logs/bulk-upload` | Upload CSV (returns `queueTaskId`) |
+| `GET` | `/queue-tasks/{id}` | Poll bulk-upload progress |
+| `GET` | `/stats/types` | Count of logs per type |
+| `GET` | `/stats/countries` | Visit count per country |
+
+### Example — Create a log
+
+```bash
+curl -X POST http://localhost:8000/api/travel-logs \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "type": "flight",
+    "departureDate": "2025-06-01T08:00",
+    "arrivalDate": "2025-06-01T12:00",
+    "city": "London",
+    "country": "United Kingdom",
+    "placeName": "London, England, United Kingdom",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "fromCity": "Paris",
+    "fromCountry": "France",
+    "fromPlaceName": "Paris, Île-de-France, France",
+    "fromLat": 48.8566,
+    "fromLng": 2.3522
+  }'
+```
+
+### Bulk CSV format
+
+```csv
+type,departure_date,arrival_date,departure_place,arrival_place,accommodation_place,comment
+flight,2025-06-01T08:00,2025-06-01T12:00,London,New York,,Summer trip
+hotel,2025-06-05T14:00,2025-06-08T11:00,,,Marriott Brussels,Conference stay
+```
+
+---
+
+## Running Tests
+
+```bash
+php artisan test
+# or
+./vendor/bin/pest
+```
+
+---
+
+## Technologies
+
+| Layer | Stack |
+|---|---|
+| Backend | Laravel 12, PHP 8.2, SQLite |
+| Validation / DTOs | spatie/laravel-data |
+| Queue | Laravel database queue driver |
+| Frontend | React 19, TypeScript, Vite |
+| Styling | Tailwind CSS v4 |
+| UI components | shadcn/ui (Radix UI primitives) |
+| Icons | lucide-react |
+| Charts | Recharts |
+| Maps | Leaflet, react-leaflet |
+| Geocoding | OpenStreetMap Nominatim (free, no API key) |
