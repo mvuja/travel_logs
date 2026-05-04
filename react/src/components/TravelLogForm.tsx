@@ -64,6 +64,13 @@ export function TravelLogForm({ onSuccess, onCancel, editLog }: Props) {
   const isHotel     = type === 'hotel';
   const needsFromTo = !isHotel;
 
+  const DATE_LABELS: Record<TravelLogType, { departure: string; arrival: string }> = {
+    flight: { departure: 'Departure Date', arrival: 'Arrival Date' },
+    rail:   { departure: 'Departure Date', arrival: 'Return Date' },
+    car:    { departure: 'Departure Date', arrival: 'Return Date' },
+    hotel:  { departure: 'Check-in',       arrival: 'Check-out' },
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setErrors({});
@@ -152,12 +159,12 @@ export function TravelLogForm({ onSuccess, onCancel, editLog }: Props) {
         {/* Dates */}
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <Label>Departure Date<span className="text-red-500 ml-0.5">*</span></Label>
+            <Label>{DATE_LABELS[type].departure}<span className="text-red-500 ml-0.5">*</span></Label>
             <Input type="datetime-local" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
             {errors['departureDate'] && <p className="text-xs text-red-500">{errors['departureDate'][0]}</p>}
           </div>
           <div className="space-y-1.5">
-            <Label>Arrival Date<span className="text-red-500 ml-0.5">*</span></Label>
+            <Label>{DATE_LABELS[type].arrival}<span className="text-red-500 ml-0.5">*</span></Label>
             <Input type="datetime-local" value={arrivalDate} onChange={(e) => setArrivalDate(e.target.value)} />
             {errors['arrivalDate'] && <p className="text-xs text-red-500">{errors['arrivalDate'][0]}</p>}
           </div>

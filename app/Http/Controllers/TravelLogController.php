@@ -12,14 +12,56 @@ use Illuminate\Http\JsonResponse;
 
 class TravelLogController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $travelLogs = TravelLog::latest()->get();
+        $sortBy  = in_array($request->query('sort_by'), ['date', 'type', 'country'], true)
+            ? $request->query('sort_by') : 'date';
+        $sortDir = in_array($request->query('sort_dir'), ['asc', 'desc'], true)
+            ? $request->query('sort_dir') : 'desc';
+
+        $column = match ($sortBy) {
+            'type'    => 'type',
+            'country' => 'country',
+            default   => 'departure_date',
+        };
+
+        $query = TravelLog::query();
+
+        // Filter by type
+        if ($request->filled('type') && in_array($request->query('type'), ['flight', 'rail', 'car', 'hotel'], true)) {
+            $query->where('type', $request->query('type'));
+        }
+
+        // Filter by country
+        if ($request->filled('country')) {
+            $query->where('country', $request->query('country'));
+        }
+
+        // Filter by date range
+        if ($request->filled('date_from')) {
+            $query->whereDate('departure_date', '>=', $request->query('date_from'));
+        }
+        if ($request->filled('date_to')) {
+            $query->whereDate('departure_date', '<=', $request->query('date_to'));
+        }
+
+        $travelLogs = $query->orderBy($column, $sortDir)->get();
 
         return response()->json([
             'message' => 'Travel logs retrieved successfully!',
             'data'    => TravelLogData::collect($travelLogs),
         ]);
+    }
+
+    public function countries(): JsonResponse
+    {
+        $countries = TravelLog::query()
+            ->whereNotNull('country')
+            ->distinct()
+            ->orderBy('country')
+            ->pluck('country');
+
+        return response()->json($countries);
     }
 
     public function store(Request $request): JsonResponse
@@ -74,28 +116,31 @@ class TravelLogController extends Controller
         return response()->json(null, 204);
     }
 
+    public function destroyAll(): JsonResponse
+    {
+        TravelLog::truncate();
+        return response()->json(null, 204);
+    }
+
     private function buildAttributes(TravelLogData $data): array
     {
         return [
-            'type'                => $data->type,
-            'departure_date'      => date('Y-m-d H:i:s', strtotime($data->departureDate)),
-            'arrival_date'        => date('Y-m-d H:i:s', strtotime($data->arrivalDate)),
-            'departure_place'     => $data->departurePlace,
-            'arrival_place'       => $data->arrivalPlace,
-            'accommodation_place' => $data->accommodationPlace,
-            'comment'             => $data->comment,
+            'type'            => $data->type,
+            'departure_date'  => date('Y-m-d H:i:s', strtotime($data->departureDate)),
+            'arrival_date'    => date('Y-m-d H:i:s', strtotime($data->arrivalDate)),
+            'comment'         => $data->comment,
             // Geocoded destination
-            'place_name'          => $data->placeName,
-            'city'                => $data->city,
-            'country'             => $data->country,
-            'latitude'            => $data->latitude,
-            'longitude'           => $data->longitude,
+            'place_name'      => $data->placeName,
+            'city'            => $data->city,
+            'country'         => $data->country,
+            'latitude'        => $data->latitude,
+            'longitude'       => $data->longitude,
             // Geocoded departure
-            'from_place_name'     => $data->fromPlaceName,
-            'from_city'           => $data->fromCity,
-            'from_country'        => $data->fromCountry,
-            'from_lat'            => $data->fromLat,
-            'from_lng'            => $data->fromLng,
+            'from_place_name' => $data->fromPlaceName,
+            'from_city'       => $data->fromCity,
+            'from_country'    => $data->fromCountry,
+            'from_lat'        => $data->fromLat,
+            'from_lng'        => $data->fromLng,
         ];
     }
 }

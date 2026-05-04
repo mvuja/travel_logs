@@ -16,23 +16,23 @@ class BulkUploadController extends Controller
         try {
             // Validate file input
             $request->validate([
-                'file' => 'required|mimes:csv|max:2048',
+                'file' => 'required|file|mimes:csv,txt|max:5120',
             ]);
-    
+
             $file = $request->file('file');
-    
+
             $filePath = $file->store('uploads');
-    
+
             // Create queue task
             $queueTask = QueueTask::create([
                 'status' => 'queued',
                 'progress' => 0,
             ]);
-    
+
             // Dispatch job
             ProcessBulkUpload::dispatch($queueTask->id, $filePath);
             Log::info('Job dispatched for queue task ID: ' . $queueTask->id);
-    
+
             return response()->json(['queueTaskId' => $queueTask->id], 201);
         } catch (Exception $e) {
             return response()->json(['error' => 'An unexpected error occurred', 'message' => $e->getMessage()], 500);

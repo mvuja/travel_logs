@@ -101,7 +101,10 @@ export function BulkUpload({ onSuccess, onCancel }: Props) {
         {/* CSV format hint */}
         {!task && (
           <p className="text-xs text-gray-400">
-            Expected columns: <code className="bg-gray-100 px-1 rounded">type, departure_date, arrival_date, departure_place, arrival_place, accommodation_place, comment</code>
+            Expected columns: <code className="bg-gray-100 px-1 rounded">type, departure_date, arrival_date, comment, city, country, place_name, latitude, longitude, from_city, from_country, from_place_name, from_lat, from_lng</code>
+            <br />
+              <br />
+            <span className="text-gray-400">Use the included <strong className="text-gray-500">sample_travel_logs.csv</strong> from the repo root to try it out.</span>
           </p>
         )}
 

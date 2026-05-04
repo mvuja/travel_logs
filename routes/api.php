@@ -10,10 +10,12 @@ Route::post('/travel-logs/bulk-upload', [BulkUploadController::class, 'bulkUploa
 Route::get('/queue-tasks/{id}', [BulkUploadController::class, 'checkQueueTask']);
 
 Route::get('/travel-logs', [TravelLogController::class, 'index']);
+Route::get('/travel-logs/countries', [TravelLogController::class, 'countries']);
 Route::post('/travel-logs', [TravelLogController::class, 'store']);
 Route::get('/travel-logs/{travelLog}', [TravelLogController::class, 'show']);
 Route::put('/travel-logs/{travelLog}', [TravelLogController::class, 'update']);
 Route::delete('/travel-logs/{travelLog}', [TravelLogController::class, 'destroy']);
+Route::delete('/travel-logs', [TravelLogController::class, 'destroyAll']);
 
 Route::get('/stats/types', [StatsController::class, 'types']);
 Route::get('/stats/countries', [StatsController::class, 'countries']);

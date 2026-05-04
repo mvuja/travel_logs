@@ -19,11 +19,32 @@ export interface TypeStats {
   rail: number;
 }
 
+export interface TravelLogFilters {
+  sortBy?: string;
+  sortDir?: string;
+  type?: string;
+  country?: string;
+  dateFrom?: string;
+  dateTo?: string;
+}
+
 export const api = {
-  async listTravelLogs(): Promise<TravelLog[]> {
-    const res = await fetch(`${BASE_URL}/travel-logs`);
+  async listTravelLogs(filters: TravelLogFilters = {}): Promise<TravelLog[]> {
+    const params = new URLSearchParams();
+    if (filters.sortBy)   params.set('sort_by',   filters.sortBy);
+    if (filters.sortDir)  params.set('sort_dir',  filters.sortDir);
+    if (filters.type)     params.set('type',      filters.type);
+    if (filters.country)  params.set('country',   filters.country);
+    if (filters.dateFrom) params.set('date_from', filters.dateFrom);
+    if (filters.dateTo)   params.set('date_to',   filters.dateTo);
+    const res = await fetch(`${BASE_URL}/travel-logs?${params}`);
     const data = await handleResponse<{ data: TravelLog[] }>(res);
     return data.data;
+  },
+
+  async listCountries(): Promise<string[]> {
+    const res = await fetch(`${BASE_URL}/travel-logs/countries`);
+    return handleResponse<string[]>(res);
   },
 
   async createTravelLog(payload: TravelLogFormData): Promise<TravelLog> {
@@ -50,6 +71,13 @@ export const api = {
     const res = await fetch(`${BASE_URL}/travel-logs/${id}`, { method: 'DELETE' });
     if (!res.ok) {
       throw new Error('Failed to delete travel log');
+    }
+  },
+
+  async deleteAllTravelLogs(): Promise<void> {
+    const res = await fetch(`${BASE_URL}/travel-logs`, { method: 'DELETE' });
+    if (!res.ok) {
+      throw new Error('Failed to delete all travel logs');
     }
   },
 

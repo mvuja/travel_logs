@@ -1,0 +1,101 @@
+type,departure_date,arrival_date,comment,city,country,place_name,latitude,longitude,from_city,from_country,from_place_name,from_lat,from_lng
+flight,2024-01-05T08:00,2024-01-05T11:30,New year trip to London,London,United Kingdom,"London, England, United Kingdom",51.5074,-0.1278,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-01-05T14:00,2024-01-08T11:00,Staying in Shoreditch,London,United Kingdom,"London, England, United Kingdom",51.5074,-0.1278,,,,,
+flight,2024-01-08T13:00,2024-01-08T17:30,Heading back home,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,London,United Kingdom,"London, England, United Kingdom",51.5074,-0.1278
+flight,2024-02-14T07:00,2024-02-14T10:15,Valentine's weekend,Vienna,Austria,"Vienna, Austria",48.2082,16.3738,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-02-14T12:00,2024-02-16T10:00,Romantic stay,Vienna,Austria,"Vienna, Austria",48.2082,16.3738,,,,,
+flight,2024-02-16T12:00,2024-02-16T15:00,Back from Vienna,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Vienna,Austria,"Vienna, Austria",48.2082,16.3738
+flight,2024-03-10T06:00,2024-03-10T14:00,Spring break NYC,New York,United States,"New York, NY, United States",40.7128,-74.0060,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-03-10T17:00,2024-03-15T11:00,NYC spring break,New York,United States,"New York, NY, United States",40.7128,-74.0060,,,,,
+flight,2024-03-15T13:00,2024-03-16T08:00,Back home from NYC,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,New York,United States,"New York, NY, United States",40.7128,-74.0060
+rail,2024-04-01T09:00,2024-04-01T12:30,Day trip to Budapest,Budapest,Hungary,"Budapest, Hungary",47.4979,19.0402,Vienna,Austria,"Vienna, Austria",48.2082,16.3738
+hotel,2024-04-01T14:00,2024-04-03T10:00,Budapest stay,Budapest,Hungary,"Budapest, Hungary",47.4979,19.0402,,,,,
+rail,2024-04-03T11:00,2024-04-03T14:30,Back to Vienna,Vienna,Austria,"Vienna, Austria",48.2082,16.3738,Budapest,Hungary,"Budapest, Hungary",47.4979,19.0402
+flight,2024-04-20T08:30,2024-04-20T10:00,Quick trip to Zagreb,Zagreb,Croatia,"Zagreb, Croatia",45.8150,15.9819,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+car,2024-04-20T11:00,2024-04-20T14:00,Road trip to the lakes,Plitvice Lakes,Croatia,"Plitvice Lakes, Croatia",44.8654,15.5820,,,,,
+hotel,2024-04-20T15:00,2024-04-22T10:00,Nature retreat,Plitvice Lakes,Croatia,"Plitvice Lakes, Croatia",44.8654,15.5820,,,,,
+car,2024-04-22T11:00,2024-04-22T14:30,Drive down the coast,Dubrovnik,Croatia,"Dubrovnik, Croatia",42.6507,18.0944,,,,,
+hotel,2024-04-22T16:00,2024-04-25T10:00,Adriatic coast,Dubrovnik,Croatia,"Dubrovnik, Croatia",42.6507,18.0944,,,,,
+flight,2024-04-25T13:00,2024-04-25T14:30,Home from Dubrovnik,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Dubrovnik,Croatia,"Dubrovnik, Croatia",42.6507,18.0944
+flight,2024-05-15T07:00,2024-05-15T10:30,Spain holiday,Barcelona,Spain,"Barcelona, Catalonia, Spain",41.3851,2.1734,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-05-15T13:00,2024-05-19T11:00,Beachside hotel,Barcelona,Spain,"Barcelona, Catalonia, Spain",41.3851,2.1734,,,,,
+car,2024-05-19T12:00,2024-05-19T14:00,Day trip to Montserrat,Montserrat,Spain,"Montserrat, Catalonia, Spain",41.5930,1.8367,,,,,
+flight,2024-05-20T16:00,2024-05-20T20:00,End of Spain trip,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Barcelona,Spain,"Barcelona, Catalonia, Spain",41.3851,2.1734
+flight,2024-06-01T06:30,2024-06-01T18:00,Summer trip to Japan,Tokyo,Japan,"Tokyo, Japan",35.6762,139.6503,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-06-01T21:00,2024-06-05T10:00,Tokyo luxury stay,Tokyo,Japan,"Tokyo, Japan",35.6762,139.6503,,,,,
+rail,2024-06-05T09:00,2024-06-05T11:15,Shinkansen to Kyoto,Kyoto,Japan,"Kyoto, Japan",35.0116,135.7681,Tokyo,Japan,"Tokyo, Japan",35.6762,139.6503
+hotel,2024-06-05T13:00,2024-06-08T10:00,Kyoto ryokan,Kyoto,Japan,"Kyoto, Japan",35.0116,135.7681,,,,,
+rail,2024-06-08T10:30,2024-06-08T11:30,Osaka day trip,Osaka,Japan,"Osaka, Japan",34.6937,135.5023,Kyoto,Japan,"Kyoto, Japan",35.0116,135.7681
+hotel,2024-06-08T14:00,2024-06-10T11:00,Osaka stay,Osaka,Japan,"Osaka, Japan",34.6937,135.5023,,,,,
+flight,2024-06-10T14:00,2024-06-11T06:00,Back from Japan,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Tokyo,Japan,"Tokyo, Japan",35.6762,139.6503
+flight,2024-07-04T08:00,2024-07-04T12:00,Summer in Amsterdam,Amsterdam,Netherlands,"Amsterdam, Netherlands",52.3676,4.9041,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-07-04T14:00,2024-07-07T11:00,Amsterdam canal stay,Amsterdam,Netherlands,"Amsterdam, Netherlands",52.3676,4.9041,,,,,
+car,2024-07-07T12:00,2024-07-07T14:30,Drive to Rotterdam,Rotterdam,Netherlands,"Rotterdam, Netherlands",51.9244,4.4777,,,,,
+hotel,2024-07-07T16:00,2024-07-09T10:00,Modern hotel,Rotterdam,Netherlands,"Rotterdam, Netherlands",51.9244,4.4777,,,,,
+flight,2024-07-09T13:00,2024-07-09T17:00,Back from Netherlands,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Amsterdam,Netherlands,"Amsterdam, Netherlands",52.3676,4.9041
+flight,2024-07-25T07:00,2024-07-25T22:00,Australia adventure,Sydney,Australia,"Sydney, New South Wales, Australia",-33.8688,151.2093,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-07-26T08:00,2024-07-30T10:00,Sydney harbour hotel,Sydney,Australia,"Sydney, New South Wales, Australia",-33.8688,151.2093,,,,,
+car,2024-07-30T11:00,2024-07-30T14:00,Blue Mountains drive,Blue Mountains,Australia,"Blue Mountains, New South Wales, Australia",-33.7182,150.3120,,,,,
+hotel,2024-07-30T16:00,2024-08-01T10:00,Mountain retreat,Blue Mountains,Australia,"Blue Mountains, New South Wales, Australia",-33.7182,150.3120,,,,,
+flight,2024-08-01T13:00,2024-08-01T15:30,Hop to Melbourne,Melbourne,Australia,"Melbourne, Victoria, Australia",-37.8136,144.9631,Sydney,Australia,"Sydney, New South Wales, Australia",-33.8688,151.2093
+hotel,2024-08-01T17:00,2024-08-04T10:00,Melbourne city stay,Melbourne,Australia,"Melbourne, Victoria, Australia",-37.8136,144.9631,,,,,
+flight,2024-08-04T13:00,2024-08-05T08:00,Heading home from Australia,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Melbourne,Australia,"Melbourne, Victoria, Australia",-37.8136,144.9631
+flight,2024-08-20T06:00,2024-08-20T16:00,Late summer NYC,New York,United States,"New York, NY, United States",40.7128,-74.0060,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+flight,2024-08-20T18:00,2024-08-20T21:00,NYC to Miami,Miami,United States,"Miami, FL, United States",25.7617,-80.1918,New York,United States,"New York, NY, United States",40.7128,-74.0060
+hotel,2024-08-20T23:00,2024-08-24T11:00,Miami beach stay,Miami,United States,"Miami, FL, United States",25.7617,-80.1918,,,,,
+car,2024-08-24T12:00,2024-08-24T14:00,Keys road trip,Key West,United States,"Key West, FL, United States",24.5551,-81.7800,,,,,
+hotel,2024-08-24T16:00,2024-08-26T11:00,Keys paradise,Key West,United States,"Key West, FL, United States",24.5551,-81.7800,,,,,
+flight,2024-08-26T14:00,2024-08-27T08:00,Back from USA,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Miami,United States,"Miami, FL, United States",25.7617,-80.1918
+flight,2024-09-10T07:00,2024-09-10T10:00,Italy autumn trip,Rome,Italy,"Rome, Lazio, Italy",41.9028,12.4964,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-09-10T13:00,2024-09-13T11:00,Rome city stay,Rome,Italy,"Rome, Lazio, Italy",41.9028,12.4964,,,,,
+rail,2024-09-13T10:00,2024-09-13T13:30,Train to Florence,Florence,Italy,"Florence, Tuscany, Italy",43.7696,11.2558,Rome,Italy,"Rome, Lazio, Italy",41.9028,12.4964
+hotel,2024-09-13T15:00,2024-09-16T10:00,Florentine stay,Florence,Italy,"Florence, Tuscany, Italy",43.7696,11.2558,,,,,
+rail,2024-09-16T11:00,2024-09-16T13:00,Train to Venice,Venice,Italy,"Venice, Veneto, Italy",45.4408,12.3155,Florence,Italy,"Florence, Tuscany, Italy",43.7696,11.2558
+hotel,2024-09-16T15:00,2024-09-18T11:00,Grand Canal hotel,Venice,Italy,"Venice, Veneto, Italy",45.4408,12.3155,,,,,
+flight,2024-09-18T14:00,2024-09-18T17:00,Back from Italy,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Venice,Italy,"Venice, Veneto, Italy",45.4408,12.3155
+flight,2024-10-05T06:30,2024-10-05T18:00,South America trip,São Paulo,Brazil,"São Paulo, Brazil",-23.5505,-46.6333,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-10-05T21:00,2024-10-08T10:00,Paulista stay,São Paulo,Brazil,"São Paulo, Brazil",-23.5505,-46.6333,,,,,
+flight,2024-10-08T12:00,2024-10-08T14:30,São Paulo to Rio,Rio de Janeiro,Brazil,"Rio de Janeiro, Brazil",-22.9068,-43.1729,São Paulo,Brazil,"São Paulo, Brazil",-23.5505,-46.6333
+hotel,2024-10-08T17:00,2024-10-12T11:00,Copacabana stay,Rio de Janeiro,Brazil,"Rio de Janeiro, Brazil",-22.9068,-43.1729,,,,,
+car,2024-10-12T12:00,2024-10-12T13:30,Day trip across the bay,Niterói,Brazil,"Niterói, Rio de Janeiro, Brazil",-22.8833,-43.1036,,,,,
+flight,2024-10-13T15:00,2024-10-14T10:00,Back from Brazil,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Rio de Janeiro,Brazil,"Rio de Janeiro, Brazil",-22.9068,-43.1729
+flight,2024-10-25T08:00,2024-10-25T11:00,Autumn in Prague,Prague,Czech Republic,"Prague, Czech Republic",50.0755,14.4378,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-10-25T14:00,2024-10-28T11:00,Gothic city stay,Prague,Czech Republic,"Prague, Czech Republic",50.0755,14.4378,,,,,
+flight,2024-10-28T13:00,2024-10-28T16:00,Back from Prague,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Prague,Czech Republic,"Prague, Czech Republic",50.0755,14.4378
+flight,2024-11-08T07:00,2024-11-08T16:00,Southeast Asia adventure,Bangkok,Thailand,"Bangkok, Thailand",13.7563,100.5018,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-11-08T19:00,2024-11-11T12:00,Riverside luxury,Bangkok,Thailand,"Bangkok, Thailand",13.7563,100.5018,,,,,
+flight,2024-11-11T14:00,2024-11-11T15:30,Island hopping,Phuket,Thailand,"Phuket, Thailand",7.8804,98.3923,Bangkok,Thailand,"Bangkok, Thailand",13.7563,100.5018
+hotel,2024-11-11T17:00,2024-11-15T11:00,Beachfront resort,Phuket,Thailand,"Phuket, Thailand",7.8804,98.3923,,,,,
+flight,2024-11-15T14:00,2024-11-15T16:00,Phuket to Singapore,Singapore,Singapore,"Singapore, Singapore",1.3521,103.8198,Phuket,Thailand,"Phuket, Thailand",7.8804,98.3923
+hotel,2024-11-15T19:00,2024-11-18T12:00,Iconic Singapore stay,Singapore,Singapore,"Singapore, Singapore",1.3521,103.8198,,,,,
+flight,2024-11-18T15:00,2024-11-19T08:00,Back from Southeast Asia,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Singapore,Singapore,"Singapore, Singapore",1.3521,103.8198
+flight,2024-11-28T07:30,2024-11-28T09:00,Winter market weekend,Munich,Germany,"Munich, Bavaria, Germany",48.1351,11.5820,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-11-28T12:00,2024-11-30T10:00,Christmas market stay,Munich,Germany,"Munich, Bavaria, Germany",48.1351,11.5820,,,,,
+flight,2024-11-30T13:00,2024-11-30T14:30,Back from Munich,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Munich,Germany,"Munich, Bavaria, Germany",48.1351,11.5820
+flight,2024-12-10T06:00,2024-12-10T19:00,End of year South America,Buenos Aires,Argentina,"Buenos Aires, Argentina",-34.6037,-58.3816,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2024-12-10T22:00,2024-12-14T12:00,Buenos Aires luxury,Buenos Aires,Argentina,"Buenos Aires, Argentina",-34.6037,-58.3816,,,,,
+flight,2024-12-14T14:00,2024-12-14T16:00,Hop to Chile,Santiago,Chile,"Santiago, Chile",-33.4489,-70.6693,Buenos Aires,Argentina,"Buenos Aires, Argentina",-34.6037,-58.3816
+hotel,2024-12-14T19:00,2024-12-17T11:00,Lastarria neighbourhood,Santiago,Chile,"Santiago, Chile",-33.4489,-70.6693,,,,,
+flight,2024-12-17T14:00,2024-12-18T10:00,Christmas journey home,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Santiago,Chile,"Santiago, Chile",-33.4489,-70.6693
+flight,2025-01-15T08:00,2025-01-15T11:00,Paris in winter,Paris,France,"Paris, Île-de-France, France",48.8566,2.3522,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2025-01-15T14:00,2025-01-18T11:00,Boulevard stay,Paris,France,"Paris, Île-de-France, France",48.8566,2.3522,,,,,
+rail,2025-01-18T10:00,2025-01-18T12:30,Eurostar to Brussels,Brussels,Belgium,"Brussels, Belgium",50.8503,4.3517,Paris,France,"Paris, Île-de-France, France",48.8566,2.3522
+hotel,2025-01-18T14:00,2025-01-20T10:00,Grand Place stay,Brussels,Belgium,"Brussels, Belgium",50.8503,4.3517,,,,,
+flight,2025-01-20T13:00,2025-01-20T17:00,Back from Belgium,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Brussels,Belgium,"Brussels, Belgium",50.8503,4.3517
+flight,2025-02-08T06:00,2025-02-08T14:00,Africa adventure,Cape Town,South Africa,"Cape Town, Western Cape, South Africa",-33.9249,18.4241,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2025-02-08T17:00,2025-02-12T11:00,V&A Waterfront stay,Cape Town,South Africa,"Cape Town, Western Cape, South Africa",-33.9249,18.4241,,,,,
+car,2025-02-12T12:00,2025-02-12T16:00,Wine country drive,Stellenbosch,South Africa,"Stellenbosch, Western Cape, South Africa",-33.9347,18.8645,,,,,
+hotel,2025-02-12T18:00,2025-02-14T10:00,Winelands retreat,Stellenbosch,South Africa,"Stellenbosch, Western Cape, South Africa",-33.9347,18.8645,,,,,
+flight,2025-02-14T14:00,2025-02-15T08:00,Back from South Africa,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Cape Town,South Africa,"Cape Town, Western Cape, South Africa",-33.9249,18.4241
+flight,2025-03-01T07:00,2025-03-01T11:30,Lisbon spring trip,Lisbon,Portugal,"Lisbon, Portugal",38.7223,-9.1393,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2025-03-01T14:00,2025-03-04T11:00,Lisbon hilltop stay,Lisbon,Portugal,"Lisbon, Portugal",38.7223,-9.1393,,,,,
+car,2025-03-04T12:00,2025-03-04T14:00,Day trip to Sintra,Sintra,Portugal,"Sintra, Portugal",38.7975,-9.3878,,,,,
+flight,2025-03-05T16:00,2025-03-05T21:00,Back from Portugal,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Lisbon,Portugal,"Lisbon, Portugal",38.7223,-9.1393
+flight,2025-04-10T08:00,2025-04-10T16:00,Canada spring visit,Toronto,Canada,"Toronto, Ontario, Canada",43.6532,-79.3832,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2025-04-10T19:00,2025-04-14T11:00,Downtown Toronto,Toronto,Canada,"Toronto, Ontario, Canada",43.6532,-79.3832,,,,,
+flight,2025-04-14T14:00,2025-04-14T19:00,Toronto to Chicago,Chicago,United States,"Chicago, IL, United States",41.8781,-87.6298,Toronto,Canada,"Toronto, Ontario, Canada",43.6532,-79.3832
+hotel,2025-04-14T21:00,2025-04-17T11:00,River North stay,Chicago,United States,"Chicago, IL, United States",41.8781,-87.6298,,,,,
+flight,2025-04-17T14:00,2025-04-18T08:00,Back from North America,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Chicago,United States,"Chicago, IL, United States",41.8781,-87.6298
+flight,2025-05-01T07:00,2025-05-01T09:30,Greece long weekend,Athens,Greece,"Athens, Attica, Greece",37.9838,23.7275,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564
+hotel,2025-05-01T12:00,2025-05-04T11:00,Syntagma Square hotel,Athens,Greece,"Athens, Attica, Greece",37.9838,23.7275,,,,,
+flight,2025-05-04T14:00,2025-05-04T15:30,Back from Greece,Sarajevo,Bosnia and Herzegovina,"Sarajevo, Bosnia and Herzegovina",43.8476,18.3564,Athens,Greece,"Athens, Attica, Greece",37.9838,23.7275

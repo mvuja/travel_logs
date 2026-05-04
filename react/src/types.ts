@@ -5,10 +5,6 @@ export interface TravelLog {
   type: TravelLogType;
   departureDate: string;
   arrivalDate: string;
-  // Legacy text fields
-  departurePlace: string | null;
-  arrivalPlace: string | null;
-  accommodationPlace: string | null;
   comment: string | null;
   // Geocoded destination
   placeName: string | null;

@@ -14,16 +14,16 @@ L.Icon.Default.mergeOptions({
 
 const TYPE_COLORS: Record<string, string> = {
   flight: '#0284c7',
-  rail:   '#7c3aed',
-  car:    '#d97706',
-  hotel:  '#059669',
+  rail: '#7c3aed',
+  car: '#d97706',
+  hotel: '#059669',
 };
 
 const TYPE_EMOJI: Record<string, string> = {
   flight: '✈️',
-  rail:   '🚆',
-  car:    '🚗',
-  hotel:  '🏨',
+  rail: '🚆',
+  car: '🚗',
+  hotel: '🏨',
 };
 
 function makeIcon(type: string) {
@@ -75,15 +75,15 @@ export function MapView({ logs }: Props) {
             icon={makeIcon(log.type)}
           >
             <Popup>
-              <div className="min-w-[160px]">
+              <div className="min-w-40">
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="text-sm font-semibold capitalize">{TYPE_EMOJI[log.type]} {log.type}</span>
                 </div>
-                {log.departurePlace && log.arrivalPlace && (
-                  <p className="text-xs text-gray-700">{log.departurePlace} → {log.arrivalPlace}</p>
+                {log.fromCity && log.city && (
+                  <p className="text-xs text-gray-700">{log.fromCity} → {log.city}</p>
                 )}
-                {log.accommodationPlace && (
-                  <p className="text-xs text-gray-700">🏨 {log.accommodationPlace}</p>
+                {!log.fromCity && log.city && (
+                  <p className="text-xs text-gray-700">{log.city}</p>
                 )}
                 <p className="text-xs text-gray-500 mt-1">
                   {formatDate(log.departureDate)} – {formatDate(log.arrivalDate)}

@@ -22,19 +22,14 @@ class TravelLogData extends Data
         #[Date]
         public string $arrivalDate,
 
-        // Legacy text fields (kept for backward compat)
-        public ?string $departurePlace,
-        public ?string $arrivalPlace,
-        public ?string $accommodationPlace,
-
         public ?string $comment,
 
         // Geocoded destination / primary location
         public ?string $placeName,
-        public ?string $city,
-        public ?string $country,
-        public ?float  $latitude,
-        public ?float  $longitude,
+        public string  $city,
+        public string  $country,
+        public float   $latitude,
+        public float   $longitude,
 
         // Geocoded departure (flights / rail / car)
         public ?string $fromPlaceName,
@@ -46,6 +41,11 @@ class TravelLogData extends Data
 
     public static function rules(): array
     {
-        return [];
+        return [
+            'city'      => ['required', 'string'],
+            'country'   => ['required', 'string'],
+            'latitude'  => ['required', 'numeric'],
+            'longitude' => ['required', 'numeric'],
+        ];
     }
 }

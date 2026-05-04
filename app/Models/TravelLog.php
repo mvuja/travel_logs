@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class TravelLog extends Model
 {
-    use HasFactory, HasUuids;
+    use HasUuids;
 
     protected $table = 'travel_logs';
 
@@ -17,16 +15,13 @@ class TravelLog extends Model
         'type',
         'departure_date',
         'arrival_date',
-        'departure_place',
-        'arrival_place',
-        'accommodation_place',
         'comment',
-        'latitude',
-        'longitude',
         // Geocoded destination
         'place_name',
         'city',
         'country',
+        'latitude',
+        'longitude',
         // Geocoded departure (flights/rail/car)
         'from_place_name',
         'from_city',

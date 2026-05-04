@@ -71,13 +71,20 @@ class ProcessBulkUpload implements ShouldQueue
                 $row = array_map(fn($value) => $value !== '' ? $value : null, $row);
 
                 TravelLog::create([
-                    'type'                 => $row[0],
-                    'departure_date'       => $row[1],
-                    'arrival_date'         => $row[2],
-                    'departure_place'      => $row[3],
-                    'arrival_place'        => $row[4],
-                    'accommodation_place'  => $row[5],
-                    'comment'              => $row[6],
+                    'type'            => $row[0],
+                    'departure_date'  => $row[1],
+                    'arrival_date'    => $row[2],
+                    'comment'         => $row[3]  ?? null,
+                    'city'            => $row[4]  ?? null,
+                    'country'         => $row[5]  ?? null,
+                    'place_name'      => $row[6]  ?? null,
+                    'latitude'        => isset($row[7])  ? (float) $row[7]  : null,
+                    'longitude'       => isset($row[8])  ? (float) $row[8]  : null,
+                    'from_city'       => $row[9]  ?? null,
+                    'from_country'    => $row[10] ?? null,
+                    'from_place_name' => $row[11] ?? null,
+                    'from_lat'        => isset($row[12]) ? (float) $row[12] : null,
+                    'from_lng'        => isset($row[13]) ? (float) $row[13] : null,
                 ]);
 
                 Log::info("Inserted row: " . json_encode($row));

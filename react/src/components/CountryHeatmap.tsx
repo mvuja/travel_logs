@@ -90,7 +90,7 @@ export function CountryHeatmap({ version = 0 }: { version?: number }) {
           : `${visitedCount} countr${visitedCount === 1 ? 'y' : 'ies'} visited`}
       </p>
 
-      <div className="relative rounded-lg overflow-hidden" style={{ height: 440 }}>
+      <div className="relative rounded-lg overflow-hidden" style={{ height: 440, isolation: 'isolate' }}>
         <MapContainer
           center={[20, 10]}
           zoom={2}
