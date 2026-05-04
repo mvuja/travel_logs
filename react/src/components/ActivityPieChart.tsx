@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { api, type TypeStats } from '@/api';
+import {Plane} from "lucide-react";
 
 const COLORS: Record<string, string> = {
   Flights: '#0284c7',
@@ -83,7 +84,7 @@ export function ActivityPieChart({ version = 0 }: { version?: number }) {
   if (total === 0) {
     return (
       <div className="flex flex-col items-center py-20 gap-2 text-gray-400">
-        <p className="text-4xl">✈️</p>
+          <Plane className="h-12 w-12 opacity-30" />
         <p className="text-sm">No travel logs yet to display.</p>
       </div>
     );
@@ -102,11 +103,11 @@ export function ActivityPieChart({ version = 0 }: { version?: number }) {
             cy="50%"
             innerRadius={70}
             outerRadius={110}
-            paddingAngle={3}
+            paddingAngle={0}
             dataKey="value"
           >
             {entries.map((entry) => (
-              <Cell key={entry.name} fill={COLORS[entry.name]} stroke="white" strokeWidth={2} />
+              <Cell key={entry.name} fill={COLORS[entry.name]} stroke="white" strokeWidth={4} />
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
