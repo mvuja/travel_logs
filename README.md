@@ -75,7 +75,7 @@ When creating a log, type a city in the location search boxes and **select a res
 
 ---
 
-## Sample CSV - try bulk upload immediately
+## Sample CSV - try bulk upload
 
 A ready-to-use CSV with **101 realistic travel logs** (flights, hotels, car trips, rail journeys across 20+ countries) is included in the repo root:
 
@@ -96,18 +96,18 @@ To use it:
 
 Base URL: `http://localhost:8000/api`
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/travel-logs` | List all logs |
-| `POST` | `/travel-logs` | Create a log |
-| `GET` | `/travel-logs/{id}` | Get a single log |
-| `PUT` | `/travel-logs/{id}` | Update a log |
-| `DELETE` | `/travel-logs/{id}` | Delete a log |
-| `DELETE` | `/travel-logs` | Delete **all** logs |
-| `POST` | `/travel-logs/bulk-upload` | Upload CSV (returns `queueTaskId`) |
-| `GET` | `/queue-tasks/{id}` | Poll bulk-upload progress |
-| `GET` | `/stats/types` | Count of logs per type |
-| `GET` | `/stats/countries` | Visit count per country |
+| Method   | Endpoint                   | Description                        |
+|----------|----------------------------|------------------------------------|
+| `GET`    | `/travel-logs`             | List all logs                      |
+| `POST`   | `/travel-logs`             | Create a log                       |
+| `GET`    | `/travel-logs/{id}`        | Get a single log                   |
+| `PUT`    | `/travel-logs/{id}`        | Update a log                       |
+| `DELETE` | `/travel-logs/{id}`        | Delete a log                       |
+| `DELETE` | `/travel-logs`             | Delete **all** logs                |
+| `POST`   | `/travel-logs/bulk-upload` | Upload CSV (returns `queueTaskId`) |
+| `GET`    | `/queue-tasks/{id}`        | Poll bulk-upload progress          |
+| `GET`    | `/stats/types`             | Count of logs per type             |
+| `GET`    | `/stats/countries`         | Visit count per country            |
 
 ### Bulk CSV format
 
@@ -148,15 +148,15 @@ php artisan test
 
 ## Technologies
 
-| Layer | Stack |
-|---|---|
-| Backend | Laravel 12, PHP 8.2, SQLite |
-| Validation / DTOs | spatie/laravel-data |
-| Queue | Laravel database queue driver |
-| Frontend | React 19, TypeScript, Vite |
-| Styling | Tailwind CSS v4 |
-| UI components | shadcn/ui (Radix UI primitives) |
-| Icons | lucide-react |
-| Charts | Recharts |
-| Maps | Leaflet, react-leaflet |
-| Geocoding | OpenStreetMap Nominatim (free, no API key) |
+| Layer             | Stack                                      |
+|-------------------|--------------------------------------------|
+| Backend           | Laravel 12, PHP 8.2, SQLite                |
+| Validation / DTOs | spatie/laravel-data                        |
+| Queue             | Laravel database queue driver              |
+| Frontend          | React 19, TypeScript, Vite                 |
+| Styling           | Tailwind CSS v4                            |
+| UI components     | shadcn/ui (Radix UI primitives)            |
+| Icons             | lucide-react                               |
+| Charts            | Recharts                                   |
+| Maps              | Leaflet, react-leaflet                     |
+| Geocoding         | OpenStreetMap Nominatim (free, no API key) |
